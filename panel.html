@@ -118,7 +118,7 @@
     </div>
 
     <script>
-        document.getElementById('workerForm').addEventListener('submit', function(e) {
+        document.getElementById('workerForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const nickInput = document.getElementById('nick').value.trim();
             const errorMessage = document.getElementById('error-message');
@@ -131,20 +131,24 @@
                 return;
             }
 
-            // Удаляем @ для кодирования
-            const nick = nickInput.substring(1);
-            let refCode;
             try {
-                refCode = btoa(nick); // Кодируем ник в Base64
-            } catch (e) {
-                errorMessage.textContent = 'Ошибка: используй только латинские буквы, цифры или символы Telegram-ника';
-                errorMessage.style.display = 'block';
-                return;
-            }
+                const response = await fetch('/api/generate-link', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nick: nickInput })
+                });
 
-            const currentDomain = window.location.origin; // Динамический домен
-            const refLink = `${currentDomain}/?ref=${encodeURIComponent(refCode)}`;
-            document.getElementById('result').innerHTML = `Твоя уникальная ссылка: <br><strong><a href="${refLink}" target="_blank">${refLink}</a></strong><br><br>Пришли ее мамонту!`;
+                if (!response.ok) {
+                    const { error } = await response.json();
+                    throw new Error(error || 'Ошибка сервера');
+                }
+
+                const { link } = await response.json();
+                document.getElementById('result').innerHTML = `Твоя уникальная ссылка: <br><strong><a href="${link}" target="_blank">${link}</a></strong><br><br>Пришли ее мамонту! Ник отправлен в Telegram.`;
+            } catch (e) {
+                errorMessage.textContent = e.message || 'Ошибка: попробуйте позже';
+                errorMessage.style.display = 'block';
+            }
         });
     </script>
 </body>
